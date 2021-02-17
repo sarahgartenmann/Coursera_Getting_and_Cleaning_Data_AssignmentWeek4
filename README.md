@@ -11,3 +11,5 @@ The run_analysis.R file contains all of the R code written to generate the tidyd
 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
 The tidydata.txt file is the final output. 
+
+Additionally, the file AssignmentDescription.md provides the background information and the tasks for this assignment (taken from the Coursera course website).  
