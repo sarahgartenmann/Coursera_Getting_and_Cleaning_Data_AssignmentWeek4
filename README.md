@@ -1,4 +1,4 @@
-# Coursera_Getting_and_Cleaning_Data_AssignmentWeek4
+# Coursera: Getting and Cleaning Data Assignment (Week 4)
 ## About this repository
 
 This repository is for the peer-graded assignment of the "Getting and Cleaning Data" course from the Data Science Specialization offered by the John Hopkins University through Coursera. 
