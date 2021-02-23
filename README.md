@@ -1,8 +1,22 @@
 # Coursera_Getting_and_Cleaning_Data_AssignmentWeek4
-This assignment is for the Coursera Course "Getting and Cleaning Data"
+## About this repository
 
+This repository is for the peer-graded assignment of the "Getting and Cleaning Data" course from the Data Science Specialization offered by the John Hopkins University through Coursera. 
+
+The course is taught by the following instructors: 
+  - Jeff Leek, PhD
+  - Roger D. Peng, PhD
+  - Brian Caffo, PhD
+
+As stated by the course instructors:
+> The purpose of the assignment is to demonstrate your ability to collect, work with, and clean a data set. The goal is to prepare tidy data that can be used for later analysis.
+ 
+This repository includes the following files: 
+
+### CodeBook.md
 The CodeBook.md file contains all of the information describing the data, the variables, and any transformations and work that was performed on the original dataset to generate the final tidy data set found in the tidydata.txt file. 
 
+### run_analysis.R
 The run_analysis.R file contains all of the R code written to generate the tidydata.txt file. This process is broken down into the following five steps: 
 1. Merges the training and the test sets to create one data set.
 2. Extracts only the measurements on the mean and standard deviation for each measurement.
@@ -10,6 +24,8 @@ The run_analysis.R file contains all of the R code written to generate the tidyd
 4. Appropriately labels the data set with descriptive variable names.
 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
+### tidydata.txt
 The tidydata.txt file is the final output. 
 
+### AssignmentDescription.md
 Additionally, the file AssignmentDescription.md provides the background information and the tasks for this assignment (taken from the Coursera course website).  
