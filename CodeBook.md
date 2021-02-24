@@ -11,7 +11,7 @@
 - Extraction of mean and standard deviation for each measurement
 - Naming activities with descriptive activity names 
 - Adding appropriate labels
-- Generating a second, indepedent dataset containing average of each variable for each activity performed by each subject 
+- Generating a second, independent tidy dataset containing average of each variable for each activity performed by each subject 
 - Writing data to text file 
  
 3. About the raw data
