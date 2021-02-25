@@ -1,4 +1,4 @@
-Subject_ID Activity_ID Measurement_Type Average_Measurement_Value
+Subject_ID Activity_Name Measurement_Type Average_Measurement_Value
 1 Walking Time_Domain_Body_Accelerometer_Mean_X 0.2773308
 1 Walking Time_Domain_Body_Accelerometer_Mean_Y -0.017383819
 1 Walking Time_Domain_Body_Accelerometer_Mean_Z -0.11114810
