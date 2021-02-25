@@ -84,11 +84,11 @@ The three "test" and the three "train" files were merged using the `cbind()` com
 
  
 ### Extraction of mean and standard deviation for each measurement
-Using the 'grepl()' command, the dataframe "alldata" was subsetted to include only columns which had the terms "mean" and "std" in their name. A vector named "names_subset" containing the terms "mean" and "std" was created to faciliate this subsetting step. The resulting dataframe was called "alldata_subset". 
+Using the `grepl()` command, the dataframe "alldata" was subsetted to include only columns which had the terms "mean" and "std" in their name. A vector named "names_subset" containing the terms "mean" and "std" was created to faciliate this subsetting step. The resulting dataframe was called "alldata_subset". 
 
 A second subsetted dataframe was generated from the first and second columns of the "alldata" dataframe called "ID_type_subset". These columns contain the "activity_ID" and the "activity_type". 
 
-Using the command 'cbind()', "ID_type_subset" and "alldata_subset" were merged to generate "alldata_meanstd", the dataframe containing only the mean measurements and the standard deviation of each measurement. 
+Using the command `cbind()`, "ID_type_subset" and "alldata_subset" were merged to generate "alldata_meanstd", the dataframe containing only the mean measurements and the standard deviation of each measurement. 
 
 This table below lists these objects, as well as the number of observations and variables each contains. 
 
@@ -100,9 +100,9 @@ This table below lists these objects, as well as the number of observations and 
 
 ### Naming activities with descriptive activity names 
 
-The data for the activity labels was read in using the 'read.table()' command and the columns were appropriately renamed using the 'rename()' command to "activity_ID" and "activity_name".
+The data for the activity labels was read in using the 'read.table()' command and the columns were appropriately renamed using the `rename()` command to "activity_ID" and "activity_name".
 
-The dataframe "alldata_meanstd" was merged with the "activitylabs" by the shared column "activity_ID" the using the 'merge()' command. This resulted in the dataframe "alldata_meanstd_actnames"
+The dataframe "alldata_meanstd" was merged with the "activitylabs" by the shared column "activity_ID" the using the `merge()` command. This resulted in the dataframe "alldata_meanstd_actnames"
 
 The columns of this dataframe were then rearranged so that the column "activity_name" was placed in second position.
 
@@ -115,9 +115,9 @@ This table below lists these objects, as well as the number of observations and 
 
 ### Adding appropriate labels
 
-The vector "columnnames" was created using the 'colnames()' function on the dataframe "alldata_meanstd_actnames" in order to extract all all column names. 
+The vector "columnnames" was created using the `colnames()` function on the dataframe "alldata_meanstd_actnames" in order to extract all all column names. 
 
-Using the 'str_replace_all()' command, a new vector called "columnnames2" was created based off of the contents of the vector "columnnames". The following table summarises the changes performed by 'str_replace_all': 
+Using the `str_replace_all()` command, a new vector called "columnnames2" was created based off of the contents of the vector "columnnames". The following table summarises the changes performed by `str_replace_all()`: 
  
 | Pattern     | Replacement           |
 | ----------- | --------------------- |
@@ -147,11 +147,45 @@ The vector "columnnames2" was then used to replace the original column names in 
 
 ### Generating a second, independent tidy dataset containing average of each variable for each activity performed by each subject 
 
-ADD DESCRIPTION!
+Using the `group_by()` command, the "alldata_meanstd_actnames" dataframe was grouped first by the variable "Subject_ID" and then by the variable "Activity_Name". Using the `summarise_all()` command, the mean of each variable for each activity performed by each subject was calculated. After ungrouping the dataframe using the `ungroup()` command, the rows were arranged by the variable "Subject_ID" and then by the variable "Activity_ID" using the command `arrange()`. The resulting dataframe was named "alldata_tidy", the dimensions of which are summarised in the table below
+
+| R Object Name            | No. Observations | No. Variables |
+| ------------------------ | ---------------- | ------------- |
+| alldata_tidy             | 180              | 49            |
+
+The definition of tidy data as stated on the cran.r-project.org website is as follows: 
+1. Each variable forms a column.
+2. Each observation forms a row.
+3. Each type of observational unit forms a table.
+
+(https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html, accessed 25.02.2021)
+
+To this end, the datatable "alldata_tidy" was reorganised into the tidy format.
+
+A vector "subID" containing the numbers 1 to 30, each repeated 276 times was created using the `rep()` command (there are 30 "Subject_ID"s, each of which performs 6 activities, and for each activity 46 measurements are taken; this means, there are 6x46 = 276 measurements for each "Subject_ID". Similarly, a vector "actID" containing the 6 "activity_name" terms from the "activitylabs" table, where each individual term was repeated 46 times, and the whole series was repeated 30 times, was created using the `rep()` command (there are 46 measurements for each of the 6 terms "Walking", "Walking Upstairs", "Walking Downstairs", "Sitting", "Standing", and "Laying" for each of the 30 subjects). The table below summaries the dimensions of these two vectors.
+
+| R Object Name  | Dimensions |
+| -------------- | ---------- | 
+| subID          | [1:8280]   |
+| actID          | [1:8280]   |
+
+A vector "measurements" was created containing the names of the columns 4:49 from the "alldata_meanstd_actnames" dataframe using the `colnames()` command. This vector was repeated 180 times using the command `rep()` and converted to a dataframe using the command `as.data.frame()`. Subsequently, the vectors "subID" and "actID" and the dataframe "measurements" were merged together using the `cbind()` command to create the dataframe "tidy1", the columns of which were renamed using the `rename()` command; "subID", "actID" and "measurements" were renamed to "Subject_ID", "Activity_ID", and "Measurement_Type", respectively. The dataframe "alldata_tidy2" was created by transposing the dataframe "alldata_tidy" using the `t()` command. The first three rows of "alldata_tidy2" were then removed, before the entire dataframe was unlisted using the `unlist()` command to rearrange all measurement values into a single column. The table below summaries the dimensions of the dataframe. The table below summaries the dimensions of the dataframes.
+
+| R Object Name  | No. Observations | No. Variables |
+| -------------- | ---------------- | ------------- |
+| measurements   | 8280             |1              |
+| tidy1          | 8280             |3              |
+| alldata_tidy2  | 8280             |1              | 
+
+The final dataframe "finaldata_tidy" was created by merging the columns from the dataframes "tidy1" with "alldata_tidy2" together using the `cbind()` command. The table below summaries the dimensions of this final, tidy, dataframe.
+
+| R Object Name  | No. Observations | No. Variables |
+| -------------- | ---------------- | ------------- |
+| finaldata_tidy | 8280             | 4             |
 
 ### Writing data to text file  
 
-Using the command 'write.table()', the final tidy datatable "alldata_tidy" was saved in the appropriate directory as a "txt" file. 
+Using the command 'write.table()', the final tidy datatable "finaldata_tidy" was saved in the appropriate directory as a "txt" file. 
 
 ## 3. About the raw data 
 
