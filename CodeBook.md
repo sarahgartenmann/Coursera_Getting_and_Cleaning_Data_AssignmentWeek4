@@ -21,6 +21,7 @@
 
 ## 1. Variable Description for the "tidydata" datatable
 
+
 ## 2. Steps taken to generate the "tidydata" datatable
 
 ### R Packages used 
@@ -61,15 +62,15 @@ Using `unzip()`, the zipfile was unzipped and its contents were directly saved i
 
 Using `read.table()`, the relevant files were read into R. The table below lists the original file name, the R object name that each was assigned to upon reading it into R, as well as the number of observations and variables each contains. 
 
-| File name           | R Object Name   | No. Observations | No. Variables |
-| ------------------- | --------------- | ---------------- | ------------- |
-| "features.txt"      | features        | 561              | 2             | 
-| "subject_test.txt"  | subject_test    | 2947             | 1             | 
-| "X_test.txt"        | x_test          | 2947             | 561           | 
-| "y_test.txt"        | y_test          | 2947             | 1             | 
-| "subject_train.txt" | subject_train   | 7352             | 1             | 
-| "X_train.txt"       | x_test          | 7352             | 561           | 
-| "y_train.txt"       | y_train         | 7352             | 1             | 
+| File name           | R Object Name   | No. Observations | No. Variables | Description | 
+| ------------------- | --------------- | ---------------- | ------------- | --------------
+| "features.txt"      | features        | 561              | 2             | List of all features |
+| "subject_test.txt"  | subject_test    | 2947             | 1             | Each row identifies the subject who performed the activity for each window sample. Its range is from 2 to 24. |
+| "X_test.txt"        | x_test          | 2947             | 561           | Test set |
+| "y_test.txt"        | y_test          | 2947             | 1             | Test labels |
+| "subject_train.txt" | subject_train   | 7352             | 1             | Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30. |
+| "X_train.txt"       | x_test          | 7352             | 561           | Training set |
+| "y_train.txt"       | y_train         | 7352             | 1             | Training labels |
 
 Using `rename()` and `rename_all()`, the columns of the six test and train files were appropriately renamed. 
 
@@ -183,4 +184,5 @@ The raw data can be downloaded via this link:
 > https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip  
 
 ### Citation
-> Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. A Public Domain Dataset for Human Activity Recognition Using Smartphones. 21th European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning, ESANN 2013. Bruges, Belgium 24-26 April 2013.
+> Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on  Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012
+
